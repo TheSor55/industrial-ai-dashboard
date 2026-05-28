@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industrial AI Assistant – Phase 1 MVP</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+  <h1>Industrial AI Assistant – Phase 1 MVP</h1>
+  <div class="sub">คำนวณ OEE + Downtime + Scrap + Energy + Carbon พร้อม Rule-based AI Insight สำหรับโรงงาน</div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+    <section class="card">
+      <h2>กรอกข้อมูลการผลิต</h2>
+      <label>Machine / Line</label>
+      <input id="machine" value="Injection Machine-01" />
+
+      <label>Shift</label>
+      <select id="shift">
+        <option>Day Shift</option>
+        <option>Night Shift</option>
+      </select>
+
+      <label>Planned Production Time (นาที)</label>
+      <input id="plannedTime" type="number" value="480" />
+
+      <label>Downtime (นาที)</label>
+      <input id="downtime" type="number" value="45" />
+
+      <label>Ideal Cycle Time (วินาที/ชิ้น)</label>
+      <input id="cycleTime" type="number" value="45" />
+
+      <label>Total Output (ชิ้น)</label>
+      <input id="totalOutput" type="number" value="1050" />
+
+      <label>Good Output (ชิ้น)</label>
+      <input id="goodOutput" type="number" value="980" />
+
+      <label>Electricity Usage (kWh)</label>
+      <input id="kwh" type="number" value="620" />
+
+      <label>Electricity Cost (บาท/kWh)</label>
+      <input id="costKwh" type="number" value="4.2" />
+
+      <label>Emission Factor (kgCO₂e/kWh)</label>
+      <input id="ef" type="number" step="0.0001" value="0.4999" />
+
+      <div class="actions">
+        <button class="btn-primary" onclick="calculate()">คำนวณ</button>
+        <button class="btn-secondary" onclick="saveData()">บันทึก</button>
+        <button class="btn-danger" onclick="clearData()">ล้างข้อมูล</button>
+      </div>
+    </section>
+
+    <main>
+      <section class="kpis">
+        <div class="kpi"><div class="name">Availability</div><div id="av" class="value">-</div><div id="avStatus" class="status"></div></div>
+        <div class="kpi"><div class="name">Performance</div><div id="pf" class="value">-</div><div id="pfStatus" class="status"></div></div>
+        <div class="kpi"><div class="name">Quality</div><div id="ql" class="value">-</div><div id="qlStatus" class="status"></div></div>
+        <div class="kpi"><div class="name">OEE</div><div id="oee" class="value">-</div><div id="oeeStatus" class="status"></div></div>
+        <div class="kpi"><div class="name">Scrap Rate</div><div id="scrap" class="value">-</div><div id="scrapStatus" class="status"></div></div>
+      </section>
+
+      <section class="two">
+        <div class="card">
+          <h2>กราฟ KPI</h2>
+          <canvas id="kpiChart"></canvas>
+        </div>
+        <div class="card">
+          <h2>Energy & Carbon</h2>
+          <table class="table">
+            <tr><th>รายการ</th><th>ผลลัพธ์</th></tr>
+            <tr><td>Energy Cost</td><td id="energyCost">-</td></tr>
+            <tr><td>Carbon Emission</td><td id="carbon">-</td></tr>
+            <tr><td>Downtime Rate</td><td id="dtRate">-</td></tr>
+            <tr><td>Output Loss Estimate</td><td id="loss">-</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="card mt">
+        <h2>AI Insight / Recommendation</h2>
+        <div id="insights"></div>
+      </section>
+    </main>
+  </div>
+
+  <section class="card mt">
+    <h2>Phase 1-4 Roadmap</h2>
+    <div class="phase">
+      <div><span class="tag">Phase 1</span><h3>Foundation & Visibility</h3><p>เก็บข้อมูล, Dashboard, OEE, Downtime, Scrap, Energy, Carbon</p></div>
+      <div><span class="tag">Phase 2</span><h3>Integration & Analytics</h3><p>เชื่อม Sensor / IIoT / MQTT / OPC-UA และวิเคราะห์สาเหตุ</p></div>
+      <div><span class="tag">Phase 3</span><h3>AI & ESG Integration</h3><p>AI วิเคราะห์ PM, Carbon, ESG, Compliance และ Action Plan</p></div>
+      <div><span class="tag">Phase 4</span><h3>Autonomous Improvement</h3><p>Digital Twin, AI Optimization, Continuous Improvement แบบอัตโนมัติ</p></div>
+    </div>
+  </section>
+
+  <section class="card mt">
+    <h2>Export Report</h2>
+    <textarea id="report" readonly>กดคำนวณเพื่อสร้างรายงาน...</textarea>
+    <div class="actions">
+      <button class="btn-secondary" onclick="copyReport()">Copy Report</button>
+    </div>
+  </section>
+</div>
+
+<footer>Prototype MVP สำหรับการเรียนรู้และ Kick-off Project เท่านั้น ควรตรวจสอบสูตรและค่า Emission Factor ตามแหล่งอ้างอิงจริงก่อนใช้งานเชิงรับรอง</footer>
+
+<script src="js/calculations.js"></script>
+<script src="js/insights.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
