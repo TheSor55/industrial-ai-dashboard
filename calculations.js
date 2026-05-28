@@ -3,7 +3,7 @@ function num(x,d=2){ return isFinite(x) ? x.toLocaleString(undefined,{maximumFra
 function computeMetrics(input){
   const runtime = input.planned - input.downtime;
   const availability = runtime / input.planned;
-  const performance = (input.cycle * input.total) / (runtime * 60);
+  const performance = Math.min((input.cycle * input.total) / (runtime * 60), 1);
   const quality = input.good / input.total;
   const oee = availability * performance * quality;
   const scrapQty = input.total - input.good;
