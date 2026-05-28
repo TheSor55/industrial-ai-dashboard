@@ -3,117 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Industrial AI Assistant – Phase 1 MVP</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Industrial AI Dashboard V2</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<header>
-  <h1>Industrial AI Assistant – Phase 1 MVP</h1>
-  <div class="sub">คำนวณ OEE + Downtime + Scrap + Energy + Carbon พร้อม Rule-based AI Insight สำหรับโรงงาน</div>
-</header>
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">AI</div><div><h1>Industrial AI</h1><p>Factory Intelligence</p></div></div>
+    <nav>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#factory">Smart Factory</a>
+      <a href="#energy">Energy</a>
+      <a href="#carbon">Carbon</a>
+      <a href="#copilot">AI Copilot</a>
+      <a href="#architecture">SaaS Architecture</a>
+    </nav>
+  </aside>
 
-<div class="wrap">
-  <div class="grid">
-    <section class="card">
-      <h2>กรอกข้อมูลการผลิต</h2>
-      <label>Machine / Line</label>
-      <input id="machine" value="Injection Machine-01" />
+  <main class="main">
+    <header class="topbar">
+      <div><h2>Industrial AI Dashboard – Phase 1 MVP</h2><p>OEE • Downtime • Scrap • Energy • Carbon • AI Insight • IIoT Simulation</p></div>
+      <div class="status-pill"><span></span> Live Demo</div>
+    </header>
 
-      <label>Shift</label>
-      <select id="shift">
-        <option>Day Shift</option>
-        <option>Night Shift</option>
-      </select>
+    <section id="overview" class="grid hero-grid">
+      <div class="panel form-panel">
+        <h3>Production Input</h3>
+        <div class="form-grid">
+          <label>Machine / Line<input id="machine" value="Injection Machine-01"></label>
+          <label>Shift<select id="shift"><option>Day Shift</option><option>Night Shift</option></select></label>
+          <label>Planned Time (min)<input id="plannedTime" type="number" value="480"></label>
+          <label>Downtime (min)<input id="downtime" type="number" value="45"></label>
+          <label>Ideal Cycle Time (sec/pc)<input id="cycleTime" type="number" value="45"></label>
+          <label>Total Output (pcs)<input id="totalOutput" type="number" value="1050"></label>
+          <label>Good Output (pcs)<input id="goodOutput" type="number" value="980"></label>
+          <label>Electricity Usage (kWh)<input id="kwh" type="number" value="620"></label>
+          <label>Electricity Cost (THB/kWh)<input id="costKwh" type="number" value="4.2"></label>
+          <label>Emission Factor (kgCO₂e/kWh)<input id="ef" type="number" step="0.0001" value="0.4999"></label>
+        </div>
+        <div class="buttons">
+          <button onclick="calculate()" class="primary">Calculate</button>
+          <button onclick="saveData()">Save</button>
+          <button onclick="clearData()" class="danger">Clear</button>
+        </div>
+      </div>
 
-      <label>Planned Production Time (นาที)</label>
-      <input id="plannedTime" type="number" value="480" />
-
-      <label>Downtime (นาที)</label>
-      <input id="downtime" type="number" value="45" />
-
-      <label>Ideal Cycle Time (วินาที/ชิ้น)</label>
-      <input id="cycleTime" type="number" value="45" />
-
-      <label>Total Output (ชิ้น)</label>
-      <input id="totalOutput" type="number" value="1050" />
-
-      <label>Good Output (ชิ้น)</label>
-      <input id="goodOutput" type="number" value="980" />
-
-      <label>Electricity Usage (kWh)</label>
-      <input id="kwh" type="number" value="620" />
-
-      <label>Electricity Cost (บาท/kWh)</label>
-      <input id="costKwh" type="number" value="4.2" />
-
-      <label>Emission Factor (kgCO₂e/kWh)</label>
-      <input id="ef" type="number" step="0.0001" value="0.4999" />
-
-      <div class="actions">
-        <button class="btn-primary" onclick="calculate()">คำนวณ</button>
-        <button class="btn-secondary" onclick="saveData()">บันทึก</button>
-        <button class="btn-danger" onclick="clearData()">ล้างข้อมูล</button>
+      <div class="panel">
+        <h3>KPI Command Center</h3>
+        <div class="kpi-grid">
+          <div class="kpi"><p>Availability</p><strong id="av">-</strong><small id="avStatus">-</small></div>
+          <div class="kpi"><p>Performance</p><strong id="pf">-</strong><small id="pfStatus">-</small></div>
+          <div class="kpi"><p>Quality</p><strong id="ql">-</strong><small id="qlStatus">-</small></div>
+          <div class="kpi accent"><p>OEE</p><strong id="oee">-</strong><small id="oeeStatus">-</small></div>
+          <div class="kpi warn"><p>Scrap Rate</p><strong id="scrap">-</strong><small id="scrapStatus">-</small></div>
+          <div class="kpi"><p>Downtime Rate</p><strong id="dtRate">-</strong><small>Machine Loss</small></div>
+        </div>
       </div>
     </section>
 
-    <main>
-      <section class="kpis">
-        <div class="kpi"><div class="name">Availability</div><div id="av" class="value">-</div><div id="avStatus" class="status"></div></div>
-        <div class="kpi"><div class="name">Performance</div><div id="pf" class="value">-</div><div id="pfStatus" class="status"></div></div>
-        <div class="kpi"><div class="name">Quality</div><div id="ql" class="value">-</div><div id="qlStatus" class="status"></div></div>
-        <div class="kpi"><div class="name">OEE</div><div id="oee" class="value">-</div><div id="oeeStatus" class="status"></div></div>
-        <div class="kpi"><div class="name">Scrap Rate</div><div id="scrap" class="value">-</div><div id="scrapStatus" class="status"></div></div>
-      </section>
+    <section class="grid chart-grid">
+      <div class="panel"><div class="panel-head"><h3>KPI Chart</h3><span>Calculated KPI</span></div><canvas id="kpiChart"></canvas></div>
+      <div class="panel"><div class="panel-head"><h3>Downtime / Scrap Pareto</h3><span>Demo data</span></div><canvas id="paretoChart"></canvas></div>
+    </section>
 
-      <section class="two">
-        <div class="card">
-          <h2>กราฟ KPI</h2>
-          <canvas id="kpiChart"></canvas>
+    <section id="factory" class="panel">
+      <div class="panel-head"><h3>Smart Factory Layout</h3><span>Machine / Sensor / Utility View</span></div>
+      <div class="factory-map">
+        <div class="machine good">IMM-01<br><small>Running</small></div>
+        <div class="machine warn">IMM-02<br><small>Setup</small></div>
+        <div class="machine danger">IMM-03<br><small>Alarm</small></div>
+        <div class="machine good">ILLIG-01<br><small>Running</small></div>
+        <div class="utility">Air Compressor<br><b id="airLoad">72%</b></div>
+        <div class="utility">Chiller<br><b id="chillerLoad">64%</b></div>
+        <div class="utility">Power Meter<br><b id="liveKw">128 kW</b></div>
+      </div>
+    </section>
+
+    <section id="energy" class="grid chart-grid">
+      <div class="panel">
+        <div class="panel-head"><h3>Energy Dashboard</h3><span>kWh / Cost / Load</span></div>
+        <div class="metric-table">
+          <div><span>Energy Cost</span><b id="energyCost">-</b></div>
+          <div><span>Output Loss Estimate</span><b id="loss">-</b></div>
+          <div><span>Live Power</span><b id="powerNow">-</b></div>
         </div>
-        <div class="card">
-          <h2>Energy & Carbon</h2>
-          <table class="table">
-            <tr><th>รายการ</th><th>ผลลัพธ์</th></tr>
-            <tr><td>Energy Cost</td><td id="energyCost">-</td></tr>
-            <tr><td>Carbon Emission</td><td id="carbon">-</td></tr>
-            <tr><td>Downtime Rate</td><td id="dtRate">-</td></tr>
-            <tr><td>Output Loss Estimate</td><td id="loss">-</td></tr>
-          </table>
-        </div>
-      </section>
+        <canvas id="energyChart"></canvas>
+      </div>
+      <div id="carbon" class="panel">
+        <div class="panel-head"><h3>Carbon Dashboard</h3><span>Scope 2 estimate</span></div>
+        <div class="carbon-card"><p>Total Carbon Emission</p><strong id="carbonValue">-</strong><small>kgCO₂e</small></div>
+        <canvas id="carbonChart"></canvas>
+      </div>
+    </section>
 
-      <section class="card mt">
-        <h2>AI Insight / Recommendation</h2>
-        <div id="insights"></div>
-      </section>
-    </main>
-  </div>
+    <section id="copilot" class="grid chart-grid">
+      <div class="panel"><div class="panel-head"><h3>AI Copilot Panel</h3><span>Rule-based Insight V1</span></div><div id="insights" class="insights"></div></div>
+      <div class="panel"><div class="panel-head"><h3>Export Report</h3><span>Copy to meeting / LINE / email</span></div><textarea id="report" readonly></textarea><button onclick="copyReport()" class="primary wide">Copy Report</button></div>
+    </section>
 
-  <section class="card mt">
-    <h2>Phase 1-4 Roadmap</h2>
-    <div class="phase">
-      <div><span class="tag">Phase 1</span><h3>Foundation & Visibility</h3><p>เก็บข้อมูล, Dashboard, OEE, Downtime, Scrap, Energy, Carbon</p></div>
-      <div><span class="tag">Phase 2</span><h3>Integration & Analytics</h3><p>เชื่อม Sensor / IIoT / MQTT / OPC-UA และวิเคราะห์สาเหตุ</p></div>
-      <div><span class="tag">Phase 3</span><h3>AI & ESG Integration</h3><p>AI วิเคราะห์ PM, Carbon, ESG, Compliance และ Action Plan</p></div>
-      <div><span class="tag">Phase 4</span><h3>Autonomous Improvement</h3><p>Digital Twin, AI Optimization, Continuous Improvement แบบอัตโนมัติ</p></div>
-    </div>
-  </section>
+    <section id="architecture" class="panel">
+      <div class="panel-head"><h3>SaaS Architecture Roadmap</h3><span>Phase 1 → Phase 4</span></div>
+      <div class="arch">
+        <div><b>Phase 1</b><span>HTML MVP / LocalStorage / KPI Logic</span></div>
+        <div><b>Phase 2</b><span>Database / Supabase / User Login</span></div>
+        <div><b>Phase 3</b><span>IIoT / MQTT / OPC-UA / API Gateway</span></div>
+        <div><b>Phase 4</b><span>AI Copilot / Predictive / Multi-factory SaaS</span></div>
+      </div>
+    </section>
+  </main>
 
-  <section class="card mt">
-    <h2>Export Report</h2>
-    <textarea id="report" readonly>กดคำนวณเพื่อสร้างรายงาน...</textarea>
-    <div class="actions">
-      <button class="btn-secondary" onclick="copyReport()">Copy Report</button>
-    </div>
-  </section>
-</div>
-
-<footer>Prototype MVP สำหรับการเรียนรู้และ Kick-off Project เท่านั้น ควรตรวจสอบสูตรและค่า Emission Factor ตามแหล่งอ้างอิงจริงก่อนใช้งานเชิงรับรอง</footer>
-
-<script src="js/calculations.js"></script>
-<script src="js/insights.js"></script>
-<script src="js/storage.js"></script>
-<script src="js/app.js"></script>
+  <script src="calculations.js"></script>
+  <script src="insights.js"></script>
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
