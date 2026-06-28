@@ -1,33 +1,46 @@
 # Industrial AI Dashboard
 
-## Overview
+## Project Overview
 
-Industrial AI Dashboard is a factory dashboard concept for monitoring OEE, downtime, scrap, energy, carbon, and production performance in one management view.
+Industrial AI Dashboard is a prototype dashboard for factory performance and sustainability monitoring.
 
-The system helps factories turn daily operation data into clearer decisions for productivity, energy efficiency, carbon reduction, and smart factory improvement.
+It demonstrates how factory managers can view OEE, downtime, scrap, energy use, and carbon emissions in one simple dashboard. The project is part of FutureGreen by Sorawit's digital tool portfolio for Thai SME factories.
 
-## Use Case
+TH: ระบบนี้เป็นตัวอย่าง Dashboard โรงงาน เพื่อให้ผู้บริหารและทีมหน้างานเห็นภาพรวมของการผลิต พลังงาน และคาร์บอนได้ง่ายขึ้น
 
-This project is suitable for:
+## Business Problem
 
-- Factory management review
-- OEE and production performance monitoring
-- Downtime and scrap analysis
-- Energy and carbon visibility
-- ISO management review support
-- ESG and sustainability reporting preparation
-- Smart factory consulting demonstrations
+Many factories collect production, quality, maintenance, energy, and carbon-related data separately. This makes it difficult for managers to see the real situation quickly, compare losses, and prioritize improvement actions.
 
-## Features
+Without a simple dashboard, decision-making often depends on delayed reports, spreadsheets, or manual summaries.
+
+## Objective
+
+- Demonstrate a practical factory dashboard concept.
+- Show how OEE, downtime, scrap, energy, and carbon data can be connected.
+- Support management review, improvement planning, and smart factory discussions.
+- Provide a visual prototype for consulting conversations before building a client-specific system.
+
+## Target Users
+
+- Factory owners and executives
+- Plant managers
+- Production managers
+- Maintenance and utility teams
+- Quality and continuous-improvement teams
+- ESG / energy / sustainability officers
+- Consultants demonstrating smart factory concepts
+
+## Key Features
 
 - OEE KPI cards
-- Downtime and scrap monitoring
+- Downtime and scrap overview
 - Energy dashboard
 - Carbon dashboard
-- Factory performance overview
-- AI insight / copilot panel concept
-- Industrial dark UI inspired by SCADA and smart factory control rooms
-- Responsive dashboard layout
+- Factory performance snapshot
+- AI insight / copilot concept
+- Industrial dark dashboard UI
+- Responsive layout for demo use
 
 ## Tech Stack
 
@@ -38,18 +51,48 @@ This project is suitable for:
 - LocalStorage
 - GitHub Pages
 
-## Demo
+## Use Case for Consulting Work
 
-Live Demo: https://thesor55.github.io/industrial-ai-dashboard/
+This prototype can be used in consulting discussions to show what a factory dashboard could look like before a full implementation.
 
-## Status
+Example consulting use cases:
+
+- Smart factory roadmap workshops
+- OEE and loss-analysis discussions
+- Energy and carbon visibility planning
+- Management review dashboard design
+- Factory data-readiness assessment
+
+## Project Status
 
 Prototype / MVP
+
+The project is suitable for demonstration and portfolio use. It is not production-ready because it does not include authentication, a production database, user roles, access control, backup, monitoring, or integration with real factory systems.
+
+## Demo Link
+
+Live Demo: https://thesor55.github.io/industrial-ai-dashboard/
 
 ## Screenshots
 
 ![Industrial AI Dashboard](assets/screenshots/dashboard.png)
 
-## Consultant Context
+## Future Improvement Plan
 
-Developed by FutureGreen by Sorawit as a prototype industrial dashboard for OEE, energy, carbon, and smart factory consulting for Thai SME manufacturers.
+- Add clearer sample data sources and assumptions.
+- Add more dashboard pages for OEE, energy, carbon, and quality.
+- Add exportable management summary.
+- Add optional API/database connection for real implementation.
+- Add authentication and role-based access before production use.
+
+## Disclaimer
+
+This project is a prototype for demonstration and consulting discussion. All displayed data should be treated as simulated or sample data unless configured for a real client implementation.
+
+## Recommended GitHub About Description
+
+Factory dashboard demo that helps managers see OEE, downtime, scrap, energy use, and carbon emissions in one simple view.
+
+## Recommended GitHub Topics
+
+`iso` `esg` `carbon-footprint` `cfo` `cfp` `factory-dashboard` `audit-checklist` `sustainability` `smart-factory` `thai-sme` `github-pages`
