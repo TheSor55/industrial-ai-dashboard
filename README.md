@@ -1,24 +1,57 @@
-# Industrial AI Dashboard V2
+# Industrial AI Dashboard
 
-Industrial AI Dashboard สำหรับโรงงานอุตสาหกรรม ใช้ติดตาม OEE, Downtime, Scrap, Energy, Carbon และ AI Insight ในรูปแบบ Dark Industrial / SCADA-style Web App
+## Overview
+
+Industrial AI Dashboard is a factory dashboard concept for monitoring OEE, downtime, scrap, energy, carbon, and production performance in one management view.
+
+The system helps factories turn daily operation data into clearer decisions for productivity, energy efficiency, carbon reduction, and smart factory improvement.
+
+## Use Case
+
+This project is suitable for:
+
+- Factory management review
+- OEE and production performance monitoring
+- Downtime and scrap analysis
+- Energy and carbon visibility
+- ISO management review support
+- ESG and sustainability reporting preparation
+- Smart factory consulting demonstrations
 
 ## Features
-- Siemens / Tesla / SCADA-inspired UI
-- OEE KPI Cards
-- Real KPI Chart
-- Downtime / Scrap Pareto Demo
-- Smart Factory Layout
-- Energy Dashboard
-- Carbon Dashboard
-- AI Copilot Panel
-- IIoT Real-time Simulation
-- Mobile Responsive
-- SaaS Architecture Roadmap
+
+- OEE KPI cards
+- Downtime and scrap monitoring
+- Energy dashboard
+- Carbon dashboard
+- Factory performance overview
+- AI insight / copilot panel concept
+- Industrial dark UI inspired by SCADA and smart factory control rooms
+- Responsive dashboard layout
 
 ## Tech Stack
+
 - HTML
 - CSS
 - JavaScript
 - Chart.js
 - LocalStorage
 - GitHub Pages
+
+## Demo
+
+Live Demo: https://thesor55.github.io/industrial-ai-dashboard/
+
+## Status
+
+Prototype / MVP
+
+## Screenshots
+
+Add dashboard screenshots here after UI review.
+
+Suggested path: docs/screenshots/dashboard.png
+
+## Consultant Context
+
+Developed by FutureGreen by Sorawit as a prototype industrial dashboard for OEE, energy, carbon, and smart factory consulting for Thai SME manufacturers.
