@@ -48,9 +48,7 @@ Prototype / MVP
 
 ## Screenshots
 
-Add dashboard screenshots here after UI review.
-
-Suggested path: docs/screenshots/dashboard.png
+![Industrial AI Dashboard](assets/screenshots/dashboard.png)
 
 ## Consultant Context
 
